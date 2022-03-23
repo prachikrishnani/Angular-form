@@ -1,0 +1,25 @@
+.logincss{
+    border: width 50px;;
+    border: black;
+    width: 500px;
+    padding: 40px;
+    align-self: center;
+    
+}
+
+.text-danger{
+    color: red;
+}
+.container{
+    justify-content: center;
+    margin-left: 467px;
+ }
+ 
+.card{
+     display: flex;
+     display: flex;
+     justify-content: center;
+     margin-top: 12px;
+     padding: 60px;
+     align-items: center;
+ }

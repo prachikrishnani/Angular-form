@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="text-center">
+                    <h1>Login</h1>
+                    <h6>Please enter email & password </h6>
+                </div>
+                <form class="logincss">
+                    <form [formGroup]="loginForm" (ngSubmit)="login()" >
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Email address</label>
+                          <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"><br>
+                         
+                            <span class="text-danger" *ngIf="loginForm.controls['email'].errors?.['email']"> Please enter valid Email address</span>
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Password</label>
+                          <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1"><br>
+                          <span class="text-danger" *ngIf="loginForm.hasError('pattern','password')">Password must of 6 to 8 characters</span>
+                        </div>
+                        <button type="submit"  class="btn btn-primary" [disabled]="loginForm.invalid">Login</button><br><br>
+                      <a routerLink="/signup">New user</a>
+                    </form>    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

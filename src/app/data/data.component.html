@@ -1,0 +1,78 @@
+<nav class="navbar" >
+    <div class="container-fluid">
+        <h1 >CRUD operations</h1>
+        <div class="d-flex">
+            <button (click)= "clickAddUser()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add User</button>
+            <button routerLink="/login" class="btn btn-danger mx-2" (click)="clearStorage()">LogOut</button>
+        </div>
+    </div>
+</nav>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Phone number</th>
+            <th scope="col">Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of userData">
+          <td>{{row.first_name}}</td>
+          <td>{{row.last_name}}</td>
+          <td>{{row.mobile_number}}</td>
+          <td>{{row.age}}</td>
+
+          <td>
+            <button (click)= "onEdit(row)" class="edit" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button">Edit</button>
+            <button (click)= "deletUser(row)" class="delete">Delete</button>
+          </td>
+        </tr>
+    </tbody>
+    
+    
+</table>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formValue">
+                <div class="mb-3">
+                  <label for="" class="form-label">First name</label>
+                  <input type="text" formControlName="first_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <span class="text-danger" *ngIf="formValue.hasError('pattern','first_name')">First name must be in Alphabets</span>
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">Last name</label>
+                  <input type="text" formControlName="last_name" class="form-control" id="exampleInputPassword1">
+                  <span class="text-danger" *ngIf="formValue.hasError('pattern','last_name')">Last name must be in Alphabets</span>
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">Phone number</label>
+                  <input type="number" formControlName="mobile_number" class="form-control" id="exampleInputPassword1">
+                  <span class="text-danger" *ngIf="formValue.hasError('pattern','mobile_number')">Mobile number mustbe in 10 digits</span>
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">Age</label>
+                  <input type="number" formControlName="age" class="form-control" id="exampleInputPassword1">
+                  <span class="text-danger" *ngIf="formValue.hasError('pattern','age')">Age must be in 2 digits</span>
+                </div>
+                  
+                
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" *ngIf= "showAdd" (click)= "postUserDetails()" class="btn btn-primary" [disabled]="formValue.invalid" >Add</button>
+          <button type="button" *ngIf= "showUpdate" (click)= "updateUserDetails()" class="btn btn-primary" [disabled]="formValue.invalid">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
